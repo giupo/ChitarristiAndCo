@@ -131,7 +131,7 @@ def main():
 
     doc = SimpleDocTemplate(
         str(ROOT / config["output_pdf"]),
-        pagesize=A4,
+        pagesize=PAGE_SIZE,
         topMargin=TOP_MARGIN,
         bottomMargin=15 * mm,
         leftMargin=SIDE_MARGIN,
