@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 
 from reportlab.lib import colors
-from reportlab.lib.pagesizes import A4
+from reportlab.lib.pagesizes import A4, landscape
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import mm
 from reportlab.pdfgen import canvas
@@ -34,16 +34,17 @@ HEADER_LABELS = [
     "GIRO ACCORDI 2",
     "GIRO / SPECIAL",
 ]
-COL_WIDTHS = [40 * mm, 26 * mm, 13 * mm, 13 * mm, 38 * mm, 38 * mm, 32 * mm]
+PAGE_SIZE = landscape(A4)
+COL_WIDTHS = [60 * mm, 38 * mm, 18 * mm, 18 * mm, 55 * mm, 55 * mm, 43 * mm]
 
 TOP_MARGIN = 28 * mm
 SIDE_MARGIN = 5 * mm  # mezzo centimetro
 
 HEADER_STYLE = ParagraphStyle(
-    "header", fontName="Helvetica-Bold", fontSize=9, leading=11,
+    "header", fontName="Helvetica-Bold", fontSize=11, leading=13,
     textColor=colors.white, alignment=1,
 )
-CELL_STYLE = ParagraphStyle("cell", fontName="Helvetica", fontSize=9, leading=11)
+CELL_STYLE = ParagraphStyle("cell", fontName="Helvetica", fontSize=11, leading=13)
 TITLE_CELL_STYLE = ParagraphStyle("titleCell", parent=CELL_STYLE, fontName="Helvetica-Bold")
 TONE_CELL_STYLE = ParagraphStyle("toneCell", parent=CELL_STYLE, fontName="Helvetica-Bold", alignment=1)
 
@@ -110,10 +111,10 @@ def make_canvas_factory(config):
             canvas.Canvas.save(self)
 
         def _draw_header(self, total_pages):
-            width, height = A4
-            self.setFont("Helvetica-Bold", 16)
+            width, height = PAGE_SIZE
+            self.setFont("Helvetica-Bold", 18)
             self.drawCentredString(width / 2, height - 15 * mm, config["title"])
-            self.setFont("Helvetica", 10)
+            self.setFont("Helvetica", 11)
             page_info = f"Pagina {self._pageNumber}/{total_pages}"
             subtitle = config.get("subtitle") or ""
             line = f"{subtitle}   |   {page_info}" if subtitle else page_info
