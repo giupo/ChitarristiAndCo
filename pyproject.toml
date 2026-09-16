@@ -1,0 +1,8 @@
+[project]
+name = "chitarristiandco"
+version = "0.1.0"
+description = "Genera il PDF della scaletta a partire da songs.csv"
+requires-python = ">=3.12"
+dependencies = [
+    "reportlab>=5.0.1",
+]
