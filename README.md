@@ -4,10 +4,10 @@ Repertorio della band in `songs.csv` (editabile anche direttamente su GitHub). O
 
 ## File
 
-- `songs.csv` — un brano per riga: `titolo, autore, tono_originale, tono_live, giro_accordi_1, giro_accordi_2, giro_special`. Usa `-` per una colonna vuota.
-- `config.json` — titolo e sottotitolo (es. data della serata) mostrati in cima al PDF.
+- `songs.csv` — il database di tutto il repertorio, un brano per riga: `id, titolo, autore, tono_originale, tono_live, giro_accordi_1, giro_accordi_2, giro_special`. `id` è un progressivo univoco (non riutilizzare un id dopo aver tolto un brano). Usa `-` per una colonna vuota.
+- `config.json` — titolo e sottotitolo mostrati in cima al PDF, più `song_ids`: l'elenco ordinato degli `id` da includere nella scaletta. Per fare una nuova scaletta basta cambiare questa lista (selezione e ordine), senza toccare `songs.csv`.
 - `setlist.pdf` — il PDF generato, sempre lo stesso file (viene sovrascritto).
-- `scripts/generate_pdf.py` — script che legge CSV + config e produce il PDF.
+- `scripts/generate_pdf.py` — script che legge il DB, seleziona i brani in `song_ids` e produce il PDF.
 
 ## Generare il PDF in locale
 
