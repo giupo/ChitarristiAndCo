@@ -26,9 +26,10 @@ jobs:
 
       - run: uv run scripts/generate_pdf.py
 
-      - name: Create release with PDF
+      - name: Update release with PDF
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: pdf-${{ github.run_number }}
-          name: Setlist ${{ github.run_number }}
+          tag_name: latest
+          name: Scaletta
+          body: "Ultimo PDF generato da ${{ github.sha }}."
           files: setlist.pdf

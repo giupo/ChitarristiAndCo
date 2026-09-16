@@ -1,6 +1,6 @@
 # ChitarristiAndCo — Scaletta
 
-Repertorio della band in `songs.csv` (editabile anche direttamente su GitHub). Ogni push su `main` che modifica `songs.csv` o `config.json` fa rigenerare automaticamente `setlist.pdf` tramite GitHub Actions, che lo pubblica come [Release](../../releases) scaricabile.
+Repertorio della band in `songs.csv` (editabile anche direttamente su GitHub). Ogni push su `main` che modifica `songs.csv` o `config.json` fa rigenerare automaticamente `setlist.pdf` tramite GitHub Actions, che lo pubblica sulla release `latest` — sempre allo stesso URL: `../../releases/tag/latest` (l'asset `setlist.pdf` viene sovrascritto ad ogni run, niente nuove release ad ogni commit).
 
 ## File
 
