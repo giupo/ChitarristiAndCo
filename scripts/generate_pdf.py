@@ -34,9 +34,10 @@ HEADER_LABELS = [
     "GIRO ACCORDI 2",
     "GIRO / SPECIAL",
 ]
-COL_WIDTHS = [42 * mm, 28 * mm, 15 * mm, 15 * mm, 42 * mm, 42 * mm, 30 * mm]
+COL_WIDTHS = [40 * mm, 26 * mm, 13 * mm, 13 * mm, 38 * mm, 38 * mm, 32 * mm]
 
 TOP_MARGIN = 28 * mm
+SIDE_MARGIN = 5 * mm  # mezzo centimetro
 
 HEADER_STYLE = ParagraphStyle(
     "header", fontName="Helvetica-Bold", fontSize=9, leading=11,
@@ -113,8 +114,10 @@ def make_canvas_factory(config):
             self.setFont("Helvetica-Bold", 16)
             self.drawCentredString(width / 2, height - 15 * mm, config["title"])
             self.setFont("Helvetica", 10)
-            subtitle = f'{config["subtitle"]}   |   Pagina {self._pageNumber}/{total_pages}'
-            self.drawCentredString(width / 2, height - 21 * mm, subtitle)
+            page_info = f"Pagina {self._pageNumber}/{total_pages}"
+            subtitle = config.get("subtitle") or ""
+            line = f"{subtitle}   |   {page_info}" if subtitle else page_info
+            self.drawCentredString(width / 2, height - 21 * mm, line)
 
     return HeaderCanvas
 
@@ -130,8 +133,8 @@ def main():
         pagesize=A4,
         topMargin=TOP_MARGIN,
         bottomMargin=15 * mm,
-        leftMargin=12 * mm,
-        rightMargin=12 * mm,
+        leftMargin=SIDE_MARGIN,
+        rightMargin=SIDE_MARGIN,
     )
 
     table_data = build_table_data(songs)
